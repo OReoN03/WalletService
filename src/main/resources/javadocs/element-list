@@ -1,0 +1,8 @@
+unnamed package
+org.example
+org.example.domain
+org.example.exceptions
+org.example.in
+org.example.out
+org.example.repository
+org.example.service
