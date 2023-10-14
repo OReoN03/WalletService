@@ -6,6 +6,7 @@ import org.example.exceptions.InsufficientFundsException;
 import org.example.exceptions.NotUniqueTransactionIdException;
 import org.example.repository.TransactionRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -42,7 +43,7 @@ public class TransactionService {
             throw new NotUniqueTransactionIdException("Transaction's id is not unique.");
         }
         player.setBalance(player.getBalance() + amount);
-        Transaction transaction = new Transaction(id, amount, Transaction.Type.CREDIT, player);
+        Transaction transaction = new Transaction(id, amount, Transaction.Type.CREDIT, player, LocalDateTime.now());
         player.getTransactions().put(id, transaction);
         transactionRepository.add(transaction);
     }
@@ -66,7 +67,7 @@ public class TransactionService {
         }
 
         player.setBalance(amountAfterDebit);
-        Transaction transaction = new Transaction(id, amount, Transaction.Type.DEBIT, player);
+        Transaction transaction = new Transaction(id, amount, Transaction.Type.DEBIT, player, LocalDateTime.now());
         player.getTransactions().put(id, transaction);
         transactionRepository.add(transaction);
     }

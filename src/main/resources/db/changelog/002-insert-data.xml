@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">
+
+    <changeSet id="insertPlayerData" author="OReoN_03">
+        <insert tableName="player">
+            <column name="name" value="John"/>
+            <column name="password" value="password123"/>
+            <column name="balance" value="1000.0"/>
+        </insert>
+        <insert tableName="player">
+            <column name="name" value="Alice"/>
+            <column name="password" value="password456"/>
+            <column name="balance" value="2000.0"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insertTransactionData" author="OReoN_03">
+        <insert tableName="transaction">
+            <column name="amount" value="500.0"/>
+            <column name="type" value="DEBIT"/>
+            <column name="player_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="transaction">
+            <column name="amount" value="1000.0"/>
+            <column name="type" value="CREDIT"/>
+            <column name="player_id" valueNumeric="2"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

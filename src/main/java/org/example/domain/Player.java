@@ -5,9 +5,10 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * A class representing a player in the system. Stores information about the player's name, password, balance, and transactions.
+ * A class representing a player in the system. Stores information about the player's id, name, password, balance, and transactions.
  */
 public class Player {
+    private long id;
     private String name;
     private String password;
     private double balance;
@@ -15,16 +16,26 @@ public class Player {
 
     /**
      * Constructor for the Player class.
-     *
+     * @param id       the player's id
      * @param name     the player's name
      * @param password the player's password
      * @param balance  the player's balance
      */
-    public Player(String name, String password, double balance) {
+    public Player(long id, String name, String password, double balance) {
+        this.id = id;
         this.name = name;
         this.password = password;
         this.balance = balance;
         this.transactions = new HashMap<>();
+    }
+
+    /**
+     * Method for getting the player's id.
+     *
+     * @return the player's id
+     */
+    public long getId() {
+        return id;
     }
 
     /**

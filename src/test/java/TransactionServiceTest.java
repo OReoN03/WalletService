@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class TransactionServiceTest {
 
         assertThatExceptionOfType(NotUniqueTransactionIdException.class)
                 .isThrownBy(() -> player.getTransactions().put(transactionId,
-                        new Transaction(transactionId, 50, Transaction.Type.CREDIT, player)));
+                        new Transaction(transactionId, 50, Transaction.Type.CREDIT, player, LocalDateTime.now())));
 
         transactionService.credit(player, 50, transactionId);
     }
@@ -98,7 +99,7 @@ public class TransactionServiceTest {
 
         assertThatExceptionOfType(NotUniqueTransactionIdException.class)
                 .isThrownBy(() -> player.getTransactions().put(transactionId,
-                        new Transaction(transactionId, 50, Transaction.Type.DEBIT, player)));
+                        new Transaction(transactionId, 50, Transaction.Type.DEBIT, player, LocalDateTime.now())));
 
         transactionService.debit(player, 50, transactionId);
     }
@@ -142,8 +143,8 @@ public class TransactionServiceTest {
     public void testTransactionsForPlayer() {
         Player player = new Player("John", "Doe", 100);
         List<Transaction> transactions = new ArrayList<>();
-        transactions.add(new Transaction(1L, 50, Transaction.Type.CREDIT, player));
-        transactions.add(new Transaction(2L, 25, Transaction.Type.DEBIT, player));
+        transactions.add(new Transaction(1L, 50, Transaction.Type.CREDIT, player, LocalDateTime.now()));
+        transactions.add(new Transaction(2L, 25, Transaction.Type.DEBIT, player, LocalDateTime.now()));
         when(transactionRepository.findForPlayer(player)).thenReturn(transactions);
 
         List<Transaction> result = transactionService.transactionsForPlayer(player);

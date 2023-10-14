@@ -1,13 +1,16 @@
 package org.example.domain;
 
+import java.time.LocalDateTime;
+
 /**
- * A class representing a transaction in the system. Stores information about the transaction's ID, amount, type, and player.
+ * A class representing a transaction in the system. Stores information about the transaction's ID, amount, type, player, date and time.
  */
 public class Transaction {
     private long id;
     private double amount;
     private Type type;
     private Player player;
+    private LocalDateTime dateTime;
 
     /**
      * Constructor for the Transaction class.
@@ -16,12 +19,14 @@ public class Transaction {
      * @param amount  the transaction's amount
      * @param type    the transaction's type (debit or credit)
      * @param player  the player associated with the transaction
+     * @param dateTime the transaction's date and time
      */
-    public Transaction(long id, double amount, Type type, Player player) {
+    public Transaction(long id, double amount, Type type, Player player, LocalDateTime dateTime) {
         this.id = id;
         this.amount = amount;
         this.type = type;
         this.player = player;
+        this.dateTime = dateTime;
     }
 
     /**
@@ -58,6 +63,15 @@ public class Transaction {
      */
     public Player getPlayer() {
         return player;
+    }
+
+    /**
+     * Method for getting the transaction's date and time.
+     *
+     * @return the transaction's date and time
+     */
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
     /**
